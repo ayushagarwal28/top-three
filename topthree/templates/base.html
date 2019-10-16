@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    {% block content %}
+    <h1>This heading tag will be overwritten by any child template that defines a block content </h1>
+    {% endblock %}
+  </body>
+</html>

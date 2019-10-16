@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>HomePage</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% block content %}
+  {{ block.super }}
     <h1>This is my homepage!</h1>
     {{ insert_me }}
-  </body>
-</html>
+{% endblock %}
