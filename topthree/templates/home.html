@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
-{% block content %}
-  {{ block.super }}
-    <h1>This is my homepage!</h1>
-    {{ insert_me }}
-{% endblock %}
+  {% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div id="home-content">
+          <h1>Vote For Your Favourite!</h1>
+          <h3>Your Voice Matters!</h3>
+          <hr>
+          <button type="button" class="btn btn-success btn-lg">Get Started!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
