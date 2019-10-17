@@ -1,4 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+  <div class="container">
     <h1>Polls List will be displayed here!</h1>
+    <ul>
+      {% for poll in polls %}
+        <li> {{ poll.text }}</li>
+        <ul>
+          {% for choice in poll.choice_set.all %}
+            <li> {{ choice.choice_text }} </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+
+  </div>
+
 {% endblock %}

@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+  {% load static %}
+  {% block custom_css %}
+    <link rel="stylesheet" type = 'text/css' href="{% static 'css/home_styles.css' %}">
+  {% endblock %}
   {% block content %}
 
   <div class="container">
@@ -8,7 +12,7 @@
           <h1>Vote For Your Favourite!</h1>
           <h3>Your Voice Matters!</h3>
           <hr>
-          <button type="button" class="btn btn-success btn-lg">Get Started!</button>
+          <button type="button" class="btn btn-info btn-lg">Get Started!</button>
         </div>
       </div>
     </div>

@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('time/', views.curr_date_time),
-    path('home/', views.home),
-    path('polls/', include('polls.urls')),
+    path('', views.home, name = 'home'),
+    path('about/', views.about, name = 'about'),
+    path('contact/', views.contact, name = 'contact'),
+    path('polls/', include('polls.urls', namespace='polls')),
 ]
