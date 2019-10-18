@@ -4,12 +4,7 @@
     <h1>Polls List will be displayed here!</h1>
     <ul>
       {% for poll in polls %}
-        <li> {{ poll.text }}</li>
-        <ul>
-          {% for choice in poll.choice_set.all %}
-            <li> {{ choice.choice_text }} </li>
-          {% endfor %}
-        </ul>
+        <li> <a href="{% url 'polls:details' poll.id %}">{{ poll.text }}</a></li>
       {% endfor %}
     </ul>
 

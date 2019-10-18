@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <ul>
+      <div class="jumbotron mt-4">
+        <h1 class="display-4"> {{poll.text}}</h1>
+        <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
+        <hr class="my-4">
+          {% for choice in poll.choice_set.all %}
+            <button type="button" class="btn btn-lg btn-info">{{ choice.choice_text }}</button>
+          {% endfor %}
+        </div>
+
+    </ul>
+  </div>
+
+{% endblock %}
