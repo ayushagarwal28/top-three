@@ -4,13 +4,19 @@
     <ul>
       <div class="jumbotron mt-4">
         <h1 class="display-4"> {{poll.text}}</h1>
-        <!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> -->
-        <hr class="my-4">
+        <form action="{% url 'polls:vote' poll.id %}" method="POST">
+        {% csrf_token %}
           {% for choice in poll.choice_set.all %}
-            <button type="button" class="btn btn-lg btn-info">{{ choice.choice_text }}</button>
+            <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+            <label for="choice {{forloop.counter}}">{{choice.choice_text}}</label>
+            <br />
           {% endfor %}
-        </div>
+          <hr class="my-4">
+          <input type="submit" value="Vote">
+        </form>
 
+
+        </div>
     </ul>
   </div>
 
