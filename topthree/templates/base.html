@@ -21,8 +21,13 @@
           <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
         </div>
       </div>
-      <a class="p-2 text-dark" href="#">Sign In</a>
-      <a class="p-2 text-dark" href="#">Sign Up</a>
+      {% if request.user.is_authenticated %}
+        Howdy Dowdy,&nbsp&nbsp <strong>{{ request.user }}</strong> !
+        <a class="p-2 text-dark" href="{% url 'accounts:logout' %}">Logout</a>
+      {% else %}
+        <a class="p-2 text-dark" href="{% url 'accounts:login' %}">Sign In</a>
+        <a class="p-2 text-dark" href="{% url 'accounts:register' %}">Sign Up</a>
+      {% endif %}
     </nav>
     {% block content %}
 
