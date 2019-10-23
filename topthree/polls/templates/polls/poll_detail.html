@@ -2,17 +2,21 @@
 {% block content %}
 
 {% if messages %}
-  <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-  </ul>
+  {% for message in messages %}
+  <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
 {% endif %}
 
   <div class="container">
     <ul>
       <div class="jumbotron mt-4">
         <h1 class="display-4"> {{poll.text}}</h1>
+        <p>Asked by : <a href="{% url 'accounts:details' poll.owner %}" class="">@{{poll.owner}}</a></p>
         <form action="{% url 'polls:vote' poll.id %}" method="POST">
         {% csrf_token %}
           {% for choice in poll.choice_set.all %}

@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <p>Already have an account?<a href="{% url 'accounts:login' %}">Login Here!</a></p>
+        <h1 class="text-center">Add Poll</h1>
         <form action="" method="POST">
           {% csrf_token %}
           {% for field in form%}
@@ -14,7 +14,11 @@
               {{ field }}
             </div>
           {% endfor %}
-          <input type="submit" value="Register" class="btn btn-info">
+          <input type="submit" value="Add Choices" class="btn btn-success btn-sm">
+          <div class="text-center">
+            <input type="submit" value="Add Poll" class="btn btn-info btn-lg">
+          </div
+
         </form>
       </div>
     </div>
