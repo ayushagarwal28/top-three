@@ -24,8 +24,9 @@
             <label for="choice {{forloop.counter}}">{{choice.choice_text}}</label>
             <br />
           {% endfor %}
+          <a href="{% url 'polls:add_choice' poll.id %}" class="btn btn-info btn-sm">Add Choice</a>
           <hr class="my-4">
-          <input type="submit" value="Vote">
+          <input type="submit" value="Vote" class="btn btn-success btn-lg">
         </form>
 
 

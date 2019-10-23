@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from .forms import PollForm
+from .forms import PollForm, ChoiceForm
 import datetime
 # Create your views here.
 
@@ -58,3 +58,19 @@ def add_poll(request):
         form = PollForm()
     context = {'form' : form}
     return render(request, 'polls/poll_add.html', context)
+
+
+@login_required
+def add_choice(request, poll_id):
+    poll = get_object_or_404(Poll, id = poll_id)
+    if request.method == 'POST':
+        form = ChoiceForm(request.POST)
+        if form.is_valid():
+            new_choice = form.save(commit = False)
+            new_choice.poll = poll
+            new_choice.save()
+            messages.success(request, 'Choice Added Successfully!', extra_tags = 'mt-1 alert alert-success alert-dismissible fade show')
+            return HttpResponseRedirect(reverse('polls:details', args=(poll_id, )))
+    else:
+        form = ChoiceForm()
+    return render(request, 'polls/choice_add.html', {'form' : form, 'poll' : poll})

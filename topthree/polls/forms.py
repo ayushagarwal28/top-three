@@ -1,5 +1,5 @@
 from django import forms
-from .models import Poll
+from .models import Poll, Choice
 
 class PollForm(forms.ModelForm):
     choice = forms.CharField(max_length = 100,
@@ -17,4 +17,13 @@ class PollForm(forms.ModelForm):
         fields = ['text',]
         widgets = {
             'text' : forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'Top 3 2019 PC Games'})
+        }
+
+
+class ChoiceForm(forms.ModelForm):
+    class Meta:
+        model = Choice
+        fields = ['choice_text']
+        widgets = {
+            'choice_text' : forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'Add your choice'})
         }

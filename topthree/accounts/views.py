@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib import messages
 from accounts.forms import UserRegistrationForm
 from polls.models import Poll
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -40,6 +41,25 @@ def register_user(request):
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form' : form})
 
+@login_required
 def details_user(request, username):
     user = get_object_or_404(User, username__iexact = username)
-    return render(request, 'accounts/details.html', {'polls' : user.poll_set.all()})
+    flag = False
+    if request.user.get_username() == username:
+        flag = True
+    return render(request, 'accounts/details.html', {'polls' : user.poll_set.all(), 'flag' : flag})
+
+@login_required
+def delete_poll(request, poll_id):
+    poll = get_object_or_404(Poll, id=poll_id)
+    if request.user != poll.owner:
+        return redirect('/')
+    if request.method == "POST":
+        poll.delete()
+        messages.success(
+                        request,
+                        'Poll Deleted Successfully',
+                        extra_tags='alert alert-success alert-dismissible fade show'
+                        )
+        return redirect('polls:list')
+    return render(request, 'accounts/delete_poll_confirm.html', {'poll':poll})
