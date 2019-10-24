@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-
+{% block custom_title %}
+  <title>Poll Result | Top Three</title>
+{% endblock %}
   {% block content %}
 
   {% if messages %}
@@ -20,15 +22,14 @@
         <h1 class="display-4"> {{poll.text}}</h1>
         <p>Asked by : <a href="{% url 'accounts:details' poll.owner %}" class="">@{{poll.owner}}</a></p>
         <p>Total Votes : {{poll.num_of_votes}}</p>
-          {% for result in results %}
-            <li>{{result.text}} - {{result.num_votes}}</li>
-            <div class="progress">
-              <div class="progress-bar bg-info" role="progressbar" style="width: {{result.percentage}}%;">{{result.percentage}}%</div>
-            </div>
-            <br />
-          {% endfor %}
-          <hr class="my-4">
         </div>
+        {% for result in results %}
+          <li>{{result.text}} - {{result.num_votes}}</li>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{result.percentage}}%;">{{result.percentage}}%</div>
+          </div>
+          <br />
+        {% endfor %}
     </ul>
   </div>
   {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% block custom_title %}
+  <title>Poll Detail | Top Three</title>
+{% endblock %}
 {% if messages %}
   {% for message in messages %}
   <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
