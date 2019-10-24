@@ -15,6 +15,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="{% url 'polls:list' %}">Polls</a>
@@ -24,7 +25,7 @@
       </div>
       {% if request.user.is_authenticated %}
         Howdy Dowdy,&nbsp&nbsp <strong><a href="{% url 'accounts:details' request.user %}">@{{request.user}}</a></strong>!
-        <a class="p-2 text-dark" href="{% url 'accounts:logout' %}">Logout</a>
+        <a class="p-2 text-dark" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i>&nbspLogout</a>
       {% else %}
         <a class="p-2 text-dark" href="{% url 'accounts:login' %}">Sign In</a>
         <a class="p-2 text-dark" href="{% url 'accounts:register' %}">Sign Up</a>

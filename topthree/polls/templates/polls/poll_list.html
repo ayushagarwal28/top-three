@@ -2,10 +2,11 @@
 
 {% block content %}
   <div class="container">
-    <h1 class="text-center">Polls List will be displayed here!</h1>
+    <h1 class="text-center">Welcome !</h1>
     <div class="list-group">
       <div class="row">
         <div class="col-sm-8 offset-sm-2">
+
           {% if messages %}
             {% for message in messages %}
             <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -16,10 +17,41 @@
             </div>
             {% endfor %}
           {% endif %}
-           <a href="{%url 'polls:add'%}"class="btn btn-info my-2">Add <i class="fas fa-plus"></i></a>
+
+             <a href="{%url 'polls:add'%}"class="btn btn-info my-2">Add <i class="fas fa-plus"></i></a>
           {% for poll in polls %}
             <a href="{% url 'polls:details' poll.id %}" class="list-group-item list-group-item-action">{{ poll.text }}</a>
           {% endfor %}
+
+          {% if polls.has_other_pages %}
+          <ul class="pagination my-2">
+            {% if polls.has_previous %}
+             <li class="page-item">
+                <li class="page-item"><a class="page-link" href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+              </li>
+            {% endif %}
+              {% for i in polls.paginator.page_range %}
+                {% if polls.number == i %}
+                  <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+            {% if polls.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ polls.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+
         </div>
       </div>
     </div>

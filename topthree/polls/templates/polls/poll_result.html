@@ -2,13 +2,33 @@
 
 
   {% block content %}
-    <div class="container">
-      <div class="row">
-        <div class="col">
-            {% for choice in poll.choice_set.all %}
-              <li>{{choice.choice_text}} - {{choice.votes}}</li>
-            {% endfor %}
-        </div>
-      </div>
+
+  {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="container">
+    <ul>
+      <div class="jumbotron mt-4">
+        <h1 class="display-4"> {{poll.text}}</h1>
+        <p>Asked by : <a href="{% url 'accounts:details' poll.owner %}" class="">@{{poll.owner}}</a></p>
+        <p>Total Votes : {{poll.num_of_votes}}</p>
+          {% for result in results %}
+            <li>{{result.text}} - {{result.num_votes}}</li>
+            <div class="progress">
+              <div class="progress-bar bg-info" role="progressbar" style="width: {{result.percentage}}%;">{{result.percentage}}%</div>
+            </div>
+            <br />
+          {% endfor %}
+          <hr class="my-4">
+        </div>
+    </ul>
+  </div>
   {% endblock %}

@@ -4,21 +4,19 @@ from django.core.exceptions import ValidationError
 
 class UserRegistrationForm(forms.Form):
     username = forms.CharField(max_length = 100,
-                               label = 'Username',
-                               widget = forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'John Smith'}))
+                               widget = forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'John Smith', 'type' : 'text', 'autocomplete' : 'off', 'autofocus' : 'autofocus', 'aria-describedby' : 'username'}))
 
-    email = forms.EmailField(widget = forms.EmailInput(attrs = {'class' : 'form-control', 'placeholder' : 'john@smith.com'}))
+    email = forms.EmailField(widget = forms.EmailInput(attrs = {'class' : 'form-control', 'placeholder' : 'john@smith.com', 'type' : 'email', 'autocomplete' : 'off', 'autofocus' : 'autofocus'}))
 
     password1 = forms.CharField(
                                 max_length = 100,
-                                label = 'Password',
                                 min_length = 5,
-                                widget = forms.PasswordInput(attrs = {'class' : 'form-control', 'placeholder' : 'Enter Password'}))
+                                widget = forms.PasswordInput(attrs = {'class' : 'form-control', 'placeholder' : 'Enter Password', 'type' : 'password', 'autocomplete' : 'off', 'autofocus' : 'autofocus'}))
+
     password2 = forms.CharField(
                                 max_length = 100,
-                                label = 'Password',
                                 min_length = 5,
-                                widget = forms.PasswordInput(attrs = {'class' : 'form-control', 'placeholder' : 'Re-enter Password'}))
+                                widget = forms.PasswordInput(attrs = {'class' : 'form-control', 'placeholder' : 'Re-enter Password', 'type' : 'password', 'autocomplete' : 'off', 'autofocus' : 'autofocus'}))
 
 
     def clean_email(self):

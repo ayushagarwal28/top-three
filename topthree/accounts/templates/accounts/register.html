@@ -1,24 +1,44 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <p>Already have an account?<a href="{% url 'accounts:login' %}">Login Here!</a></p>
-        <form action="" method="POST">
-          {% csrf_token %}
-          {% for field in form%}
-            <div class="form-group">
-              {{ field.errors }}
-              {{ field.label_tag }}
-              {{ field }}
-            </div>
-          {% endfor %}
-          <input type="submit" value="Register" class="btn btn-info">
-        </form>
-      </div>
-    </div>
-  </div>
+{% load static %}
+    {% block custom_css %}
+        <link rel="stylesheet" type = 'text/css' href="{% static 'css/log_styles.css' %}">
+    {% endblock %}
 
+{% block content %}
+
+  <form class="form-signin" method="POST" action="">
+      {% csrf_token %}
+      {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+
+      {% endif %}
+      <div class="text-center mb-4">
+          <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <h1 class="h3 mb-3 font-weight-normal">TopThree</h1>
+          <p>Sign up for TopThree</a></p>
+      </div>
+
+      {% for field in form%}
+        <div class="form-label-group">
+          {{ field.errors }}
+          {{ field.label_tag }}
+          {{ field }}
+        </div>
+      {% endfor %}
+
+
+      <div class="col-md-12 text-center">
+            <button class="btn btn-lg btn-info mt-1" type="submit">Register</button>
+            <p class="mt-2">Already have an account?&nbsp<a href="{% url 'accounts:login' %}">Login Here!</a></a></p>
+      </div>
+  </form>
 
 {% endblock %}
