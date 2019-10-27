@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+class Contact(models.Model):
+    name = models.CharField(max_length = 255)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email
+
+
 class Poll(models.Model):
     owner = models.ForeignKey(User, on_delete = models.CASCADE, default = 1)
     text = models.CharField(max_length = 255)
@@ -33,6 +42,7 @@ class Poll(models.Model):
             else:
                 d['percentage'] = round(choice.num_of_votes / self.num_of_votes * 100, 2)
             res.append(d)
+        res = sorted(res, key = lambda i: (i['percentage']), reverse = True)
         return res
 
 class Choice(models.Model):

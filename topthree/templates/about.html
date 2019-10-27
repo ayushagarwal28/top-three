@@ -1,14 +1,58 @@
 {% extends 'base.html' %}
+{% load static %}
   {% block custom_title %}
     <title>About | Top Three</title>
   {% endblock %}
+  {% block custom_css %}
+      <link rel="stylesheet" type = 'text/css' href="{% static 'css/about_styles.css' %}">
+  {% endblock %}
 {% block content %}
-<div class="container">
-  <h1 class="text-center">Who are we ?</h1>
-    <ul>
-      <li>See whats trending in the world!</li>
-      <li>Create Private polls for your University/Workspace!</li>
-      <li>Polls/Choices once added, cannot be edited. You may add choices or delete a Poll.</li>
-    </ul>
-</div>
+
+<body>
+ <section id="about">
+   <div class="container">
+     <div class="row">
+     <div class="col-md-5">
+       <div class="about-img">
+             <img class="man" src="{% static 'img/face.jpeg' %}" alt="">
+       </div>
+     </div>
+     <br>
+     <div class="col-md-7 about-right">
+
+       <h2 class="color-3"><b>ABOUT TOPTHREE</b></h2>
+       <p class="p-first">
+         TopThree is an online Polling Web Applications. It allows users to create polls and vote on existing items.
+            Setup your account and see whats trending in fields which interests you! You may add as many polls and choices as you want,
+          but you cannot edit polls/choices.You may report about a poll using the contact page.
+       </p>
+       <p>
+        Upcoming feature : Create private polls for your University/Workspace!
+       </p>
+       <br>
+       <h2 class="color-3"><b>ABOUT ME</b></h2>
+       <p class="p-first">
+         I’m Ayush, 4th year CS Undergraduate at Heritage Institute Of Technology, Kolkata (India).
+           I love the adrenaline rush of competitive coding.
+           I am also a freelance graphic designer, curious about exploring new possibilities.
+
+       </p>
+       <p>
+         Algorithms and Data Structures are my prime focus along with parties and rock concerts.
+         I am a self-motivated musician and have mastered instruments like - guitar, drums & piano.
+       </p>
+       <ul class="about-link">
+         <li><a href="https://iamayush.me" class="icon-button globe" target="_blank"><i class="fas fa-globe"></i></a></li>
+         <li><a href="https://www.linkedin.com/in/ayushagarwal28/" class="icon-button linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+         <li><a href="https://www.facebook.com/simplyayush28" class="icon-button facebook" target="_blank"><i class="fab fa-facebook-f"></i></i></a></li>
+         <li><a href="https://www.youtube.com/acoustichead" class="icon-button google-plus" target="_blank"><i class="fab fa-youtube"></i></a></li>
+       </ul>
+     </div>
+     </div>
+   </div>
+   </section
+
+
+
+
 {% endblock %}

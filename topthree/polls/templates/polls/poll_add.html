@@ -1,30 +1,33 @@
 {% extends 'base.html' %}
-{% block custom_title %}
-  <title>Add Poll | Top Three</title>
-{% endblock %}
-{% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h1 class="text-center">Add Poll</h1>
-        <form action="" method="POST">
-          {% csrf_token %}
-          {% for field in form%}
+  {% load static %}
+
+  {% block custom_title %}
+    <title>Add Poll | Top Three</title>
+  {% endblock %}
+
+  {% block custom_css %}
+      <link rel="stylesheet" type = 'text/css' href="{% static 'css/log_styles.css' %}">
+  {% endblock %}
+
+  {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h1 class="text-center">Add Poll</h1>
+          <form action="" method="POST" class="form-signin">
+            {% csrf_token %}
+            {% for field in form%}
             <div class="form-group">
               {{ field.errors }}
               {{ field.label_tag }}
               {{ field }}
             </div>
-          {% endfor %}
-          <input type="submit" value="Add Choices" class="btn btn-success btn-sm">
-          <div class="text-center">
-            <input type="submit" value="Add Poll" class="btn btn-info btn-lg">
-          </div
-
-        </form>
+            {% endfor %}
+            <div class="text-center">
+              <input type="submit" value="Add Poll" class="btn btn-info btn-lg">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-
-
-{% endblock %}
+  {% endblock %}

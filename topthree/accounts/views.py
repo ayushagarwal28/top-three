@@ -38,7 +38,7 @@ def register_user(request):
             messages.success(request, 'User succesfully registered!', extra_tags = 'mt-1 alert alert-success alert-dismissible fade show')
             return redirect('accounts:login')
     else:
-        form = UserRegistrationForm()
+        form = UserRegistrationForm(auto_id = '%s')
     return render(request, 'accounts/register.html', {'form' : form})
 
 @login_required
@@ -47,7 +47,8 @@ def details_user(request, username):
     flag = False
     if request.user.get_username() == username:
         flag = True
-    return render(request, 'accounts/details.html', {'polls' : user.poll_set.all(), 'flag' : flag})
+    print(user.poll_set.all())
+    return render(request, 'accounts/details.html', {'polls' : user.poll_set.all(), 'flag' : flag, 'username' : username})
 
 @login_required
 def delete_poll(request, poll_id):

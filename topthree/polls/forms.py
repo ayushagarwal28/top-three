@@ -3,14 +3,19 @@ from .models import Poll, Choice
 
 class PollForm(forms.ModelForm):
     choice = forms.CharField(max_length = 100,
-                               label = 'Choice',
+                               label = 'Choice 1',
                                min_length = 1,
                                widget = forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'Player Unknown\'s Battle Grounds - PUBG'}))
 
     choice1 = forms.CharField(max_length = 100,
-                               label = 'Choice',
+                               label = 'Choice 2',
                                min_length = 1,
                                widget = forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'Call Of Duty - COD'}))
+
+    choice2 = forms.CharField(max_length = 100,
+                               label = 'Choice 3',
+                               min_length = 1,
+                               widget = forms.TextInput(attrs = {'class' : 'form-control', 'placeholder' : 'Getting Over It!'}))
 
     class Meta:
         model = Poll

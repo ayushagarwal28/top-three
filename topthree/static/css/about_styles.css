@@ -1,0 +1,113 @@
+html {
+	font-size: 16px;
+}
+body {
+	background-color: #ccc;
+	text-align: center;
+}
+
+/* Wrapper */
+.icon-button {
+	background-color: #ccc;
+	border-radius: 3.0rem;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 2.0rem;
+	height: 3.3rem;
+	line-height: 3.3rem;
+	margin: 0 5px;
+	position: relative;
+	text-align: center;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	width: 3.3rem;
+}
+
+
+li:hover{
+  transform : translateX(5px);
+  transition: 0.5s;
+}
+.linkedin{
+	background-color: #4267B2;
+}
+.globe{
+	background-color: #db5a3c;
+}
+.facebook{
+	background-color: #4267B2;
+}
+.google-plus{
+	background-color: #db5a3c;
+}
+
+/* Icons */
+.icon-button i {
+	background: none;
+	color: white;
+	height: 3.6rem;
+	left: 0;
+	line-height: 3.3rem;
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 3.3rem;
+	z-index: 10;
+}
+.icon-button .icon-twitter {
+	color: #4099ff;
+}
+.icon-button .icon-facebook {
+	color: #3B5998;
+}
+.icon-button .icon-google-plus {
+	color: #db5a3c;
+}
+.icon-button:hover .icon-twitter,
+.icon-button:hover .icon-facebook,
+.icon-button:hover .icon-google-plus {
+	color: white;
+}
+
+
+#about{
+  padding-top: 20px;
+  padding-bottom: 101px;
+}
+
+
+#about .p-first{
+  margin-bottom: 30px;
+}
+
+
+#about h2{
+  margin-bottom: 30px;
+  margin-top: 12px;
+	letter-spacing: 2px;
+}
+
+#about .about-link{
+  padding-left: 0px;
+}
+
+#about .about-link li{
+  display: inline-block;
+}
+
+#about .about-img{
+  position: relative;
+
+}
+
+#about .about-img .man{
+  position: absolute;
+  top: 100px;
+  left: -40px;
+  width: 350px;
+}

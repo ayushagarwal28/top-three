@@ -8,15 +8,33 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from .forms import PollForm, ChoiceForm
 import datetime
+from django.db.models import Count
 # Create your views here.
 
-@login_required
+
 def poll_list(request):
     polls = Poll.objects.all();
+
+    if 'sort-a-z' in request.GET:
+        print("This is from sort-a-z")
+        polls = polls.order_by('text')
+
+    if 'date' in request.GET:
+        print("This is from date")
+        polls = polls.order_by('-pub_date')
+
+    if 'votes' in request.GET:
+        polls = polls.annotate(Count('vote')).order_by('-vote__count')
+
+
     paginator = paginator = Paginator(polls, 5)
     page = request.GET.get('page')
     polls = paginator.get_page(page)
-    context = {'polls' : polls}
+
+    get_dict_copy = request.GET.copy()
+    params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
+
+    context = {'polls' : polls, 'params': params}
     return render(request, 'polls/poll_list.html', context)
 
 @login_required
@@ -64,6 +82,10 @@ def add_poll(request):
             new_choice2 = Choice(
                                 poll = new_poll,
                                 choice_text = form.cleaned_data['choice1']
+                                ).save()
+            new_choice3 = Choice(
+                                poll = new_poll,
+                                choice_text = form.cleaned_data['choice2']
                                 ).save()
             messages.success(request, 'Your poll is now live!', extra_tags = 'mt-1 alert alert-success alert-dismissible fade show')
             return redirect('polls:list')

@@ -19,8 +19,10 @@
             </div>
             {% endfor %}
           {% endif %}
-
-             <a href="{%url 'polls:add'%}"class="btn btn-info my-2">Add <i class="fas fa-plus"></i></a>
+            <a href="{%url 'polls:add'%}"class="btn btn-info my-2">Add <i class="fas fa-plus"></i></a>
+             <a href="?sort-a-z=True"class="btn btn-{% if 'sort-a-z' in request.GET %}warning{% else %}primary{% endif %} my-2">A-Z <i class="fas fa-sort"></i></a>
+             <a href="?votes=True"class="btn btn-{% if 'votes' in request.GET %}warning{% else %}primary{% endif %} my-2">Votes <i class="fas fa-sort"></i></a>
+             <a href="?date=True"class="btn btn-{% if 'date' in request.GET %}warning{% else %}primary{% endif %} my-2">Date <i class="fas fa-sort"></i></a>
           {% for poll in polls %}
             <a href="{% url 'polls:details' poll.id %}" class="list-group-item list-group-item-action">{{ poll.text }}</a>
           {% endfor %}
@@ -29,7 +31,7 @@
           <ul class="pagination my-2">
             {% if polls.has_previous %}
              <li class="page-item">
-                <li class="page-item"><a class="page-link" href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ polls.previous_page_number }}&{{params}}">&laquo;</a></li>
               </li>
             {% else %}
               <li class="page-item disabled">
@@ -40,11 +42,11 @@
                 {% if polls.number == i %}
                   <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
                 {% else %}
-                  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}&{{params}}">{{ i }}</a></li>
                 {% endif %}
               {% endfor %}
             {% if polls.has_next %}
-              <li class="page-item"><a class="page-link" href="?page={{ polls.next_page_number }}">&raquo;</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ polls.next_page_number }}&{{params}}">&raquo;</a></li>
             {% else %}
               <li class="page-item disabled">
                 <span class="page-link">&raquo;</span>

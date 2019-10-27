@@ -20,22 +20,20 @@
           </button>
         </div>
         {% endfor %}
-
       {% endif %}
+
       <div class="text-center mb-4">
           <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
           <h1 class="h3 mb-3 font-weight-normal">TopThree</h1>
           <p>Sign up for TopThree</a></p>
       </div>
-
-      {% for field in form%}
-        <div class="form-label-group">
-          {{ field.errors }}
-          {{ field.label_tag }}
-          {{ field }}
-        </div>
-      {% endfor %}
-
+        {% for field in form%}
+          <div class="form-label-group">
+            {{ field.errors }}
+            {{ field }}
+            {{ field.label_tag }}
+          </div>
+        {% endfor %}
 
       <div class="col-md-12 text-center">
             <button class="btn btn-lg btn-info mt-1" type="submit">Register</button>
